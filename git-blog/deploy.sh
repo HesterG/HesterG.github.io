@@ -1,3 +1,4 @@
+rm -rf .deploy_git
 hexo generate
 cp -R public/* .deploy_git
 cd .deploy_git
