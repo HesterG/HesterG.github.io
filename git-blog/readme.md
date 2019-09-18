@@ -43,4 +43,19 @@ $ hexo s # 启动本地web服务器
 现在打开http://localhost:4000/ ，会看到我们已经应用了一个新的主题。
 ```
 
+```
+使用hexo deploy部署
+hexo deploy可以部署到很多平台，具体可以参考这个链接. 如果部署到github，需要在配置文件_config.xml中作如下修改：
 
+deploy:
+  type: git
+  repo: git@github.com:jiji262/jiji262.github.io.git
+  branch: master
+然后在命令行中执行
+
+hexo d
+即可完成部署。
+```
+
+**Note**
+deploy d会抹去所有public下记忆以及commits以及playground folder下的内容
