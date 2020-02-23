@@ -1,9 +1,7 @@
 ---
 
 title: Kubernetes Review
-
 date: 2020-02-23 10:01
-
 tags: Tech Study
 
 ---
