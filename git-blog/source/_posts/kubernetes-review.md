@@ -14,7 +14,7 @@ tags: Tech Study
 
 [Study Source](https://www.youtube.com/channel/UCdkGV51Nu0unDNT58bHt9bg)
 
-![Screen Shot 2018-05-11 at 7.52.40 PM](/Users/xinyigong/Desktop/Screen Shot 2018-05-11 at 7.52.40 PM.png)
+![Quick General Intro](https://user-images.githubusercontent.com/17645053/75114786-11c41d80-5627-11ea-9e03-009bda02ad1b.png)
 
 
 
