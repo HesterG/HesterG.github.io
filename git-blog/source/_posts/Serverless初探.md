@@ -5,6 +5,7 @@ tags:
 ---
 
 [Reference from 腾讯云](https://raw.githubusercontent.com/tencentyun/qcloud-documents/master/product/%E8%AE%A1%E7%AE%97%E4%B8%8E%E7%BD%91%E7%BB%9C/Serverless%20Framework/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20Hexo%E5%8D%9A%E5%AE%A2.md)
+
 可用于迭代目前的个人主页
 
 ## 操作场景
