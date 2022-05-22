@@ -22,23 +22,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"theme-next.js.org","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-next@8.11.1/source/js/config.min.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Lullaby">
-<meta property="og:url" content="https://theme-next.js.org/archives/2020/index.html">
+    <meta name="description" content="远程Git Repo的安全回退方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全的git回退方式记录">
+<meta property="og:url" content="https://theme-next.js.org/safe-git-reverse/index.html">
 <meta property="og:site_name" content="Lullaby">
+<meta property="og:description" content="远程Git Repo的安全回退方式">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-06T17:05:56.000Z">
+<meta property="article:modified_time" content="2022-05-22T09:19:36.950Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://theme-next.js.org/archives/2020/">
+<link rel="canonical" href="https://theme-next.js.org/safe-git-reverse/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/2020/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://theme-next.js.org/safe-git-reverse/","path":"safe-git-reverse/","title":"安全的git回退方式记录"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Archive | Lullaby</title>
+<title>安全的git回退方式记录 | Lullaby</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108155018-3"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-108155018-3","only_pageview":false}</script>
@@ -72,7 +77,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Lullaby</h1>
+      <p class="site-title">Lullaby</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Hester's Personal Website</p>
@@ -132,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -145,6 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%9B%9E%E9%80%80%E6%8C%87%E4%BB%A4-git-revert-git-reset"><span class="nav-number">1.</span> <span class="nav-text">常用回退指令: git revert, git reset</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">git工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reset"><span class="nav-number">1.2.</span> <span class="nav-text">git reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-revert"><span class="nav-number">1.3.</span> <span class="nav-text">git revert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reset%E5%92%8Cgit-revert%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.</span> <span class="nav-text">git reset和git revert的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E5%9C%B0%E5%9B%9E%E6%BB%9A%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="nav-number">2.</span> <span class="nav-text">如何安全地回滚远程分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%B4%B4%E5%A3%AB"><span class="nav-number">3.</span> <span class="nav-text">其他撤销操作小贴士</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,90 +231,169 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 8 posts in total. Keep on posting.</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://theme-next.js.org/safe-git-reverse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="HesterG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lullaby">
+      <meta itemprop="description" content="The world's my Oyster.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="安全的git回退方式记录 | Lullaby">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安全的git回退方式记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-05-06 17:05:56" itemprop="dateCreated datePublished" datetime="2022-05-06T17:05:56Z">2022-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tech/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/safe-git-reverse/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="safe-git-reverse/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="note no-icon"><p>远程Git Repo的安全回退方式</p>
+</div>
+
+<span id="more"></span>
+
+<h1 id="常用回退指令-git-revert-git-reset"><a href="#常用回退指令-git-revert-git-reset" class="headerlink" title="常用回退指令: git revert, git reset"></a>常用回退指令: git revert, git reset</h1><h2 id="git工作区"><a href="#git工作区" class="headerlink" title="git工作区"></a>git工作区</h2><p><strong>Workspace</strong>： 工作区，就是你平时存放项目代码的地方。<br><strong>Index &#x2F; Stage</strong>： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息。<code>git add &lt;file&gt;</code>以后，文件就会被存储于这个区域。<br><strong>Repository</strong>： 仓库区（或版本库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本。<code>git commit &lt;file&gt;</code>以后，文件就会被存储于仓库区。<br><strong>Remote</strong>： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换。<code>git push &lt;file&gt;</code>以后，文件就会被上传到远程仓库。</p>
+<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p>用于回退版本，可以遗弃不再使用的提交，根据参数的区别，可以指定回退的额范围(scope)，即是否回退暂存区(Index &#x2F; Stage)和工作区(Workspace)的内容<br><code>--hard</code> 参数: 把head移动回指定commit(默认为最新的一个commit)，并且工作区和暂存区内容都将回退<br><code>--soft</code>参数：把head移动回指定commit(默认为最新的一个commit)，工作区和暂存区都不会发生变化。即运行<code>git log</code>发现head变化了，其余的都不变。<br><code>--mixed</code>参数: 默认的参数，把head移动回指定commit(默认为最新的一个commit)，只有暂存区变化。</p>
+<h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h2><p>在当前提交后面，新增一次提交，抵消掉上一次提交导致的所有变化，不会改变过去的历史，主要是用于安全地取消过去发布的提交。<br>注意：<code>git revert  &lt;commid&gt;</code>是撤销commid，即撤销到该commid上一个commit,不是撤销到该commid</p>
+<h2 id="git-reset和git-revert的区别"><a href="#git-reset和git-revert的区别" class="headerlink" title="git reset和git revert的区别"></a>git reset和git revert的区别</h2><ul>
+<li><code>git revert</code>是用一次<strong>新的commit来回滚之前的commit</strong>，<code>git reset</code>是<strong>直接删除</strong>指定的commit；</li>
+<li><code>git reset</code>是把<code>HEAD</code>向后移动了一下，而<code>git revert</code>是<code>HEAD</code>继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容；</li>
+<li>在操作上，<code>git reset</code>以后如果没有<code>pull</code>就要<code>push</code>的话必须要加<code>-f</code>,这也是<code>reset</code>不安全的理由；</li>
+<li><code>git revert</code>被设计为撤销公开的提交(已经<code>push</code>了的commit)的安全方式，<code>git reset</code>被设计为重设本地更改。</li>
+</ul>
+<h1 id="如何安全地回滚远程分支"><a href="#如何安全地回滚远程分支" class="headerlink" title="如何安全地回滚远程分支"></a>如何安全地回滚远程分支</h1><ol>
+<li>使用<code>git revert</code></li>
+<li>使用<code>merge -s</code>产生一个<strong>代码状态与历史版本完全一致，但基于 <code>master</code>(要回退到的head) 的一个commit</strong>。<span class="exturl" data-url="aHR0cHM6Ly9oYXJ0dGxlLmxhbmQvMjAxOC8wMy8xMi9yZXNldC1vcmlnaW4td2l0aG91dC1mb3JjZS1wdXNoLmh0bWw=">具体方式<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+<ul>
+<li>两者都是新提交一个commit来撤销操作（<strong>忌对远程分支使用<code>reset</code>或<code>rebase</code>， git官方也推荐使用<code>revert</code>）</strong></li>
+</ul>
+<h1 id="其他撤销操作小贴士"><a href="#其他撤销操作小贴士" class="headerlink" title="其他撤销操作小贴士"></a>其他撤销操作小贴士</h1><ol>
+<li><p>替换上一次的提交信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 产生一个新的提交对象，替换掉上一次提交产生的提交对象。</span><br><span class="line"># 这时如果暂存区有发生变化的文件，会一起提交到仓库。所以，--amend不仅可以修改提交信息，还可以整个把上一次提交替换掉。</span><br><span class="line">git commit --amend -m &quot;Fixes bug #42&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>撤销工作区的文件修改</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 如果工作区的某个文件被改乱了，但还没有提交，可以用git checkout命令找回本次修改之前的文件。</span><br><span class="line">git checkout -- [filename]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从暂存区撤销文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rm --cached [filename]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcWRoeGh6L3AvOTc1NzM5MC5odG1s">文章一<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9jMmVjNWYwNmNmMWE=">文章二<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzNTQyOTMxNTg3MDg2">文章三<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9oYXJ0dGxlLmxhbmQvMjAxOC8wMy8xMi9yZXNldC1vcmlnaW4td2l0aG91dC1mb3JjZS1wdXNoLmh0bWw=">文章四<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE5LzEyL2dpdC11bmRvLmh0bWw=">文章五<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-21T23:26:35Z"
-              content="2020-08-21">
-          08-21
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/serverless-hexo/" itemprop="url">
-            <span itemprop="name">Serverless x Hexo</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/serverless-hexo/" rel="prev" title="Serverless x Hexo">
+                  <i class="fa fa-chevron-left"></i> Serverless x Hexo
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/web-performance-intro/" rel="next" title="前端性能优化初探">
+                  前端性能优化初探 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-02-24T09:43:15Z"
-              content="2020-02-24">
-          02-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/LC28/" itemprop="url">
-            <span itemprop="name">LC28</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-02-23T10:01:00Z"
-              content="2020-02-23">
-          02-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kubernetes-review/" itemprop="url">
-            <span itemprop="name">Kubernetes Review</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 
