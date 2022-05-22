@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/17645053/168980353-1303ecb6-f426-4938-bf16-d486768119cc.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/17645053/168985752-709ef3a4-acf9-4e73-b3c0-8f53fdf350ed.png">
 <meta property="article:published_time" content="2022-05-20T15:31:21.000Z">
-<meta property="article:modified_time" content="2022-05-21T05:25:57.623Z">
+<meta property="article:modified_time" content="2022-05-22T08:45:54.300Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Frontend">
 <meta name="twitter:card" content="summary">
@@ -364,7 +364,7 @@
 <p>如果不想使用<code>web-vitals</code>想自己做埋点，也可以使用performance Windows API来做简易的埋点。看一下<code>performance.timing</code>都有什么:<br><img width="494" alt="Screen Shot 2022-05-20 at 3 15 38 PM" src="https://user-images.githubusercontent.com/17645053/169474053-167baa8c-ab55-4957-809e-bddbfdfad419.png"><br>根据它们可以计算出FP&#x2F;DCL&#x2F;Load等关键事件的时间点</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 页面首次渲染时间(firstPaint)</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">FP</span> = domLoading - navigationStart</span><br><span class="line"><span class="comment">// DOM加载完成(DOMContentEventLoad)</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">DCL</span> = domContentLoadedEventEnd - navigationStart</span><br><span class="line"><span class="comment">// 图片、样式等外链资源加载完成 (Load)</span></span><br><span class="line"><span class="keyword">let</span> L = loadEventEnd - navigationStart</span><br></pre></td></tr></table></figure>
 
-<p>不过这里因为Google Web Vitals更多考虑了用户体验，所以还是使用Web Vitals的时间点来作为阶段的分割线。</p>
+<p>不过这里因为Google Web Vitals更多考虑了用户体验，所以也使用了Web Vitals的时间点来作为阶段的分割线。</p>
 <h3 id="beforeunload、发起请求准备阶段"><a href="#beforeunload、发起请求准备阶段" class="headerlink" title="beforeunload、发起请求准备阶段"></a>beforeunload、发起请求准备阶段</h3><p>在发起  <code>get index.html</code>  请求前，有一小段时间是在执行  <code>beforeunload</code>  ，其实应该还包括了发起 <code>get index.html</code> 请求前的准备工作，如果未来需求里需要引入跨域文件，也许可以使用  <code>dns-prefetch</code>  来进行预解析。即预解析之后可能会用到的域名，并将结果缓存到系统缓存中，缩短 <code>DNS</code> 的查询时间，以此来提高访问速度。这里有个误解，之前以为 <code>dns-prefetch</code> 会影响首屏加载，但其实如果使用的是 <code>chrome</code> ， <code>V8</code> 是会利用空闲的时间去做预解析，并且它的预解析是在异步线程上执行的，可以避免影响首屏加载。不过 <code>dns-prefetch</code> 也不是设置得越多越好，虽然是异步线程，也还是占用设备的带宽，可能会造成资源竞争。<br><img src="https://user-images.githubusercontent.com/17645053/168993038-8342cb8f-c81f-49d7-bf9d-8c32d9366d08.png" alt="undefined" loading="lazy"></p>
 <h3 id="发起请求到FCP阶段"><a href="#发起请求到FCP阶段" class="headerlink" title="发起请求到FCP阶段"></a>发起请求到FCP阶段</h3><p>在 <code>First Contentful Paint</code> 之前，可以看到优先级高的关键资源会被首先请求，如  <code>index.html</code>  、  <code>index.css</code>  、  <code>index.js</code>  等。</p>
 <p><img src="https://user-images.githubusercontent.com/17645053/168964607-d996963f-7b25-41cd-9e2f-aba74d82a95f.png" alt="undefined" loading="lazy"></p>
