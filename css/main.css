@@ -3144,3 +3144,12 @@ mjx-container[display='true'] + br {
   background: #fff;
   background-clip: content-box;
 }
+.site-title {
+  margin: auto;
+  color: #fff;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.site-title:hover {
+  text-shadow: 0 0 10px #0ebeff, 0 0 20px #0ebeff, 0 0 50px #0ebeff, 0 0 100px #0ebeff, 0 0 200px #0ebeff;
+}
